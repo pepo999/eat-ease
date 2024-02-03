@@ -16,7 +16,7 @@
 
   header{
     width: 100vw;
-    height: 6vh;
+    height: 10vh;
     display:flex;
     flex-direction: row;
     background-color: cadetblue;
@@ -44,7 +44,7 @@
   }
     
   .calendar-nav{
-    height: 4vh;
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,12 +56,18 @@
     min-width: 30vw;
   }
 
+  #mainContainer{
+    height: 80vh;
+    background-color: cadetblue;
+  }
+
   .selectedDay{
     background-color: blueviolet;
   }
 
   #recipeContainer{
-    height: 50vh;
+    height: 100vh;
+    overflow-y: scroll;
   }
 
   .btn-container{

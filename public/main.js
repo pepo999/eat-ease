@@ -169,8 +169,12 @@ function createCalendar() {
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
 
   const calendarContainer = document.getElementById('calendarContainer');
-  calendarContainer.innerHTML = ''; // Clear previous calendar
-
+  const calendarNav = document.getElementById('calendarNav')
+  calendarContainer.style.visibility = 'visible'
+  calendarContainer.innerHTML = ''; 
+  calendarContainer.style.height = '25vh'
+  calendarNav.style.visibility = 'visible'
+  calendarNav.style.height = '5vh'
   createNavigationButtons(); // Create navigation buttons
 
   const blankCells = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
@@ -207,6 +211,7 @@ function createCalendar() {
     });
 
     calendarContainer.appendChild(dayElement);
+    calendarContainer.style.height = '25vh'
   }
 }
 
@@ -510,6 +515,46 @@ function setDayButtonStates(days, selector) {
     button.addEventListener('click', toggleDayHighlight);
   });
 }
+
+document.getElementById('allRecipesBtn').addEventListener('click', async function() {
+  const userId = auth.currentUser.uid; // Ensure you have access to the current user's ID
+  const db = getFirestore();
+  const userRecipesRef = collection(db, 'users', userId, 'recipes');
+  const calendarContainer = document.getElementById('calendarContainer');
+  const recipeContainer = document.getElementById('recipeContainer');
+  calendarContainer.style.visibility = 'hidden'
+  calendarContainer.style.height = '0vh'
+  recipeContainer.innerHTML = '';
+  const calendarNav = document.getElementById('calendarNav')
+  calendarNav.style.visibility = 'hidden'
+  calendarNav.style.height = '0vh'
+  try {
+    const querySnapshot = await getDocs(userRecipesRef);
+    const recipes = [];
+    querySnapshot.forEach(doc => {
+      const recipe = { id: doc.id, ...doc.data() };
+      recipes.push(recipe);
+    });
+
+    recipes.sort((a, b) => a.name.localeCompare(b.name));
+    recipes.forEach(recipe => {
+      const recipeElement = document.createElement('div');
+      recipeElement.textContent = recipe.name;
+      recipeContainer.appendChild(recipeElement);
+    });
+  } catch (error) {
+    console.error("Error fetching all recipes:", error);
+  }
+});
+
+function displayMainView() {
+  createCalendar();
+  displayRecipesForCurrentUser(auth.currentUser.uid);
+}
+
+document.getElementById('calendarBtn').addEventListener('click', function() {
+  displayMainView();
+});
 
 // {
 //   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */

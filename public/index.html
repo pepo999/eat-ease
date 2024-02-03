@@ -22,7 +22,7 @@
 
         </div>
     </header>
-    <main>
+    <main id="mainContainer">
         <div id="signInModal" style="display:none;">
             <div>
                 <span onclick="document.getElementById('signInModal').style.display='none'">&times;</span>
@@ -63,7 +63,6 @@
                     </div>
                     <div>
                         <label for="recipeDayDet">Day:</label>
-                        <!-- <input type="text" id="recipeDayDet" name="day"> -->
                         <button type="button" class="day-btn-detail" data-day="1">Mon</button>
                         <button type="button" class="day-btn-detail" data-day="2">Tue</button>
                         <button type="button" class="day-btn-detail" data-day="3">Wed</button>
@@ -98,8 +97,8 @@
     </main>
     <footer>
         <div class="footer-block">
-            <button class="sub-foot">calendar</button>
-            <button class="sub-foot">all recipes</button>
+            <button id="allRecipesBtn" class="sub-foot">all recipes</button>
+            <button id="calendarBtn" class="sub-foot">calendar</button>
             <div id="addRecipeModal" style="display:none;">
                 <div>
                     <span onclick="document.getElementById('addRecipeModal').style.display='none'">&times;</span>
