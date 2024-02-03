@@ -1,0 +1,104 @@
+@media screen and (max-width: 992px) {
+
+    body, html{
+        height: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    *{
+        /* border: 2px solid violet; */
+        box-sizing: border-box;
+    }
+
+  header{
+    width: 100vw;
+    height: 6vh;
+    display:flex;
+    flex-direction: row;
+    background-color: cadetblue;
+    border: 2px solid violet;
+  }
+
+  h1{
+    display: inline;
+  }
+
+  .head-block{
+    display: inline;
+    width: 33vw;
+  }
+
+  .head-block-r{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 33vw;
+  }
+
+  main{
+    padding: 0px;
+  }
+    
+  .calendar-nav{
+    height: 4vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+  }
+
+  .month-span{
+    padding: 0px 10px 0px 10px;
+    min-width: 30vw;
+  }
+
+  .selectedDay{
+    background-color: blueviolet;
+  }
+
+  #recipeContainer{
+    height: 50vh;
+  }
+
+  .btn-container{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn-subcontainer{
+    display: flex;
+    flex-direction: row;
+  }
+
+  #recipeContainer{
+    background-color: cadetblue;
+    border-top: 1px violet solid;
+    padding: 5vw 0vw 2vw 0vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  footer{
+    background-color: cadetblue;
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .footer-block{
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100vw;
+  }
+
+  .sub-foot{
+    width: 24vw;
+  }
+  }

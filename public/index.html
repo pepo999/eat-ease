@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EatEase</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./mobile.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="head-block">
+        </div>
+        <div class="head-block">
+            <h1>EatEase</h1>
+        </div>
+        <div class="head-block-r">
+            <button id="signOutButton">Sign Out</button>
+
+        </div>
+    </header>
+    <main>
+        <div id="signInModal" style="display:none;">
+            <div>
+                <span onclick="document.getElementById('signInModal').style.display='none'">&times;</span>
+                <p>Sign In</p>
+                <form id="signInForm">
+                    Email: <input type="email" id="email">
+                    Password: <input type="password" id="password">
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+
+        </div>
+        <div id="calendarNav" class="calendar-nav">
+            <button id="button-prev"> < </button>
+            <div class="month-span" id="selectedMonthDisplay"></div>
+            <button id="button-next"> > </button>
+        </div>
+        <div id="calendarContainer"></div>
+        <div id="recipeContainer">
+        </div>
+        <div id="recipeDetailModal" style="display:none;">
+            <div>
+                <span onclick="document.getElementById('recipeDetailModal').style.display='none'">&times;</span>
+                <h2>Recipe Details</h2>
+                <form id="recipeDetailForm">
+                    <div>
+                        <label for="recipeNameDet">Name:</label>
+                        <input type="text" id="recipeNameDet" name="name">
+                    </div>
+                    <div>
+                        <label>Season:</label>
+                        <button type="button" class="season-btn-detail" data-season="1">1</button>
+                        <button type="button" class="season-btn-detail" data-season="2">2</button>
+                        <button type="button" class="season-btn-detail" data-season="3">3</button>
+                        <button type="button" class="season-btn-detail" data-season="4">4</button>
+                    </div>
+                    <div>
+                        <label for="recipeIngredients">Ingredients:</label>
+                        <div id="recipeIngredientsContainer"></div>
+                    </div>
+                    <div>
+                        <label for="recipeDescriptionDet">Description:</label>
+                        <input type="text" id="recipeDescriptionDet" name="description">
+                    </div>
+                    <div>
+                        <label for="recipeDayDet">Day:</label>
+                        <input type="text" id="recipeDayDet" name="day">
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit">Update Recipe</button>
+                        <div class="btn-subcontainer">
+                            <button id="doneBtn">Cancel</button>
+                            <button id="deleteRecipeBtn">Delete Recipe</button>
+                        </div>
+                    </div>
+
+
+                </form>
+
+            </div>
+        </div>
+    
+    </main>
+    <footer>
+        <div class="footer-block">
+            <button class="sub-foot">calendar</button>
+            <button class="sub-foot">all recipes</button>
+            <div id="addRecipeModal" style="display:none;">
+                <div>
+                    <span onclick="document.getElementById('addRecipeModal').style.display='none'">&times;</span>
+                    <h2>Add New Recipe</h2>
+                    <form id="addRecipeForm">
+                        Name: <input type="text" id="recipeName" required><br>
+                        <div>
+                            <label>Season:</label>
+                            <button type="button" class="season-btn" data-season="1">1</button>
+                            <button type="button" class="season-btn" data-season="2">2</button>
+                            <button type="button" class="season-btn" data-season="3">3</button>
+                            <button type="button" class="season-btn" data-season="4">4</button>
+                        </div>
+                        <div id="ingredientsContainer">
+                            <h3>Ingredients</h3>
+                            <div class="ingredientInput">
+                                Ingredient: <input type="text" class="ingredientName">
+                                Quantity: <input type="text" class="ingredientQuantity">
+                            </div>
+                        </div>
+                        <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
+                        Day: <input type="number" id="recipeDay" required><br>
+                        Description: <textarea id="recipeDescription"></textarea><br>
+                        <button type="submit">Add Recipe</button>
+                    </form>
+                </div>
+            </div>
+            <button id="addRecipeBtn" class="sub-foot">add</button>
+        </div>
+        <div class="footer-block"></div>
+    </footer>
+</body>
+<script type="module" src="./main.js"></script>
+
+</html>
