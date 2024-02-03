@@ -548,6 +548,8 @@ document.getElementById('allRecipesBtn').addEventListener('click', async functio
 });
 
 function displayMainView() {
+  const recipesContainer = document.getElementById('recipeContainer')
+  recipesContainer.innerHTML = ''
   createCalendar();
   displayRecipesForCurrentUser(auth.currentUser.uid);
 }
