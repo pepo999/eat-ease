@@ -76,19 +76,22 @@ let selectedSeason = null;
 
 
 async function displayRecipesForCurrentUser(userId) {
-  selectedSeason = getCurrentSeason(currentMonth);
-  const date = new Date(currentYear, currentMonth, new Date().getDay());
-  selectedDay = date.getDay() === 0 ? 7 : date.getDay();
   const db = getFirestore();
+  selectedSeason = getCurrentSeason(currentMonth); // Not an array
+  const date = new Date(currentYear, currentMonth, new Date().getDate()); // Corrected to use getDate()
+  selectedDay = date.getDay() === 0 ? 7 : date.getDay(); // Singular value
   const userRecipesRef = collection(db, 'users', userId, 'recipes');
-  const q = query(userRecipesRef, where('season', 'array-contains', selectedSeason), where('day', '==', selectedDay));
+  const q = query(userRecipesRef, where('season', 'array-contains', selectedSeason));
   try {
     const querySnapshot = await getDocs(q);
     const recipes = [];
     querySnapshot.forEach((doc) => {
       const recipeData = doc.data();
-      recipeData.id = doc.id;
-      recipes.push(recipeData);
+      // Ensure recipeData.day is an array and contains the selectedDay
+      if (recipeData.day && recipeData.day.includes(selectedDay)) {
+        recipeData.id = doc.id;
+        recipes.push(recipeData);
+      }
     });
     displayRecipes(recipes);
   } catch (error) {
@@ -114,10 +117,7 @@ async function addNewRecipe(userId, recipe) {
   try {
     const db = getFirestore();
     const userRecipesRef = collection(db, 'users', userId, 'recipes');
-
-    recipe.day = Number(recipe.day);
     recipe.description = recipe.description || 'No description';
-
     await addDoc(userRecipesRef, recipe);
     displayRecipesForSelectedDay(selectedDay, selectedSeason);
   } catch (error) {
@@ -229,13 +229,13 @@ async function openRecipeDetailModal(recipeId) {
     if (docSnap.exists()) {
 
       const recipe = docSnap.data();
+      setDayButtonStates(recipe.day, '.day-btn-detail');
       setSeasonButtonStates(recipe.season, '.season-btn-detail');
-     
       document.getElementById('recipeNameDet').value = recipe.name
       // document.getElementById('recipeSeasonDet').value = recipe.season.join(', '); // Convert array to string
-      document.getElementById('recipeDayDet').value = recipe.day.toString();
+      // document.getElementById('recipeDayDet').value = recipe.day.toString();
       const ingredientsContainer = document.getElementById('recipeIngredientsContainer');
-      ingredientsContainer.innerHTML = ''; // Clear existing contents
+      ingredientsContainer.innerHTML = '';
       recipe.ingredients.forEach((ingredient, index) => {
         const ingredientElement = document.createElement('div');
         ingredientElement.classList.add('ingredientRecipeInput')
@@ -246,7 +246,7 @@ async function openRecipeDetailModal(recipeId) {
         ingredientsContainer.appendChild(ingredientElement);
       });
       document.getElementById('recipeDescriptionDet').value = recipe.description
-      
+
       document.getElementById('recipeDetailModal').style.display = 'block';
     } else {
       console.log("No such recipe!");
@@ -283,7 +283,7 @@ document.getElementById('recipeDetailForm').addEventListener('submit', async fun
   const userId = auth.currentUser.uid;
   const db = getFirestore();
   const recipeRef = doc(db, 'users', userId, 'recipes', currentRecipeId);
-  
+
   const ingredientElements = document.querySelectorAll('.ingredientRecipeInput');
   const ingredients = Array.from(ingredientElements).map(ingredientElement => {
     return {
@@ -294,8 +294,8 @@ document.getElementById('recipeDetailForm').addEventListener('submit', async fun
   const updatedRecipe = {
     name: document.getElementById('recipeNameDet').value,
     season: getSelectedSeasons('.season-btn-detail'),
+    day: getSelectedDays('.day-btn-detail'),
     ingredients: ingredients,
-    day: Number(document.getElementById('recipeDayDet').value),
     description: document.getElementById('recipeDescriptionDet').value
   };
 
@@ -338,20 +338,22 @@ document.getElementById('deleteRecipeBtn').addEventListener('click', async funct
   }
 });
 
-
 async function displayRecipesForSelectedDay(selectedDay, selectedSeason) {
   const userId = auth.currentUser.uid;
   const db = getFirestore();
   const userRecipesRef = collection(db, 'users', userId, 'recipes');
-
-  const q = query(userRecipesRef, where('season', 'array-contains', selectedSeason), where('day', '==', selectedDay));
+  // const q = query(userRecipesRef, where('season', 'array-contains', selectedSeason), where('day', '==', selectedDay));
+  const q = query(userRecipesRef, where('season', 'array-contains', selectedSeason));
   try {
     const querySnapshot = await getDocs(q);
     const recipes = [];
+
     querySnapshot.forEach((doc) => {
       const recipeData = doc.data();
-      recipeData.id = doc.id;
-      recipes.push(recipeData);
+      if (recipeData.day.includes(selectedDay)) {
+        recipeData.id = doc.id;
+        recipes.push(recipeData);
+      }
     });
     displayRecipes(recipes);
   } catch (error) {
@@ -366,6 +368,7 @@ document.getElementById('addRecipeBtn').addEventListener('click', function () {
 document.getElementById('addRecipeForm').addEventListener('submit', function (event) {
   event.preventDefault();
   setupSeasonButtons()
+  setupDayButtons()
   const ingredientInputs = document.querySelectorAll('.ingredientInput');
   const ingredients = Array.from(ingredientInputs).map(input => {
     return {
@@ -374,22 +377,26 @@ document.getElementById('addRecipeForm').addEventListener('submit', function (ev
     };
   });
 
-  function getSelectedSeasons() {
-    const selectedSeasons = [];
-    document.querySelectorAll('.season-btn.selected').forEach(button => {
-      selectedSeasons.push(Number(button.getAttribute('data-season')));
-    });
+  function getSelectedSeasons(selector) {
+    const selectedSeasons = Array.from(document.querySelectorAll(`${selector}.selected`))
+      .map(button => parseInt(button.getAttribute('data-season')));
     return selectedSeasons;
   }
 
-  const selectedSeasons = getSelectedSeasons();
-  
+  function getSelectedDays(selector) {
+    const selectedDays = Array.from(document.querySelectorAll(`${selector}.selected`))
+      .map(button => parseInt(button.getAttribute('data-day')));
+    return selectedDays;
+  }
+
+
   const recipe = {
     name: document.getElementById('recipeName').value,
-    season: selectedSeasons,
+    season: getSelectedSeasons('.season-btn'),
+    day: getSelectedDays('.day-btn'),
     ingredients: ingredients,
-    day: document.getElementById('recipeDay').value, // Keep as string for now
-    description: document.getElementById('recipeDescription').value // Optional
+    // day: document.getElementById('recipeDay').value, // Keep as string for now
+    description: document.getElementById('recipeDescription').value
   };
 
   addNewRecipe(auth.currentUser.uid, recipe);
@@ -429,10 +436,8 @@ document.getElementById('addRecipeIngredientBtn').addEventListener('click', func
 
 document.getElementById('removeRecipeIngredientBtn').addEventListener('click', function () {
   const container = document.getElementById('recipeIngredientsContainer');
-  // Correctly select the last ingredientInput element
   const ingredientInputs = container.querySelectorAll('.ingredientRecipeInput');
   if (ingredientInputs.length > 0) {
-    // Select the last element in the ingredientInputs NodeList
     const lastIngredientInput = ingredientInputs[ingredientInputs.length - 1];
     container.removeChild(lastIngredientInput);
   }
@@ -442,31 +447,33 @@ function toggleSeasonSelection(button) {
   button.classList.toggle('selected');
 }
 
-// Attach click event listeners to season buttons
+function toggleDaySelection(button) {
+  button.classList.toggle('selected');
+}
+
 document.querySelectorAll('.season-btn.selected').forEach(button => {
   button.addEventListener('click', () => toggleSeasonSelection(button));
 });
 
-// Function to get selected seasons as an array of numbers
-// function getSelectedSeasons(selector) {
-//   const selectedButtons = document.querySelectorAll(`${selector}.selected`);
-//   return Array.from(selectedButtons).map(button => parseInt(button.getAttribute('data-season')));
-// }
+document.querySelectorAll('.day-btn.selected').forEach(button => {
+  button.addEventListener('click', () => toggleDaySelection(button));
+});
 
-function getSelectedSeasons() {
-  const selectedSeasons = [];
-  document.querySelectorAll('.season-btn.selected').forEach(button => {
-    selectedSeasons.push(button.getAttribute('data-season'));
-  });
-  return selectedSeasons;
-}
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  setupSeasonButtons(); // Call this when the document is ready or when the modal is about to be displayed.
+  setupSeasonButtons();
+  setupDayButtons()
 });
 
 function setupSeasonButtons() {
   document.querySelectorAll('.season-btn').forEach(button => {
+    button.onclick = () => button.classList.toggle('selected');
+  });
+}
+
+function setupDayButtons() {
+  document.querySelectorAll('.day-btn').forEach(button => {
     button.onclick = () => button.classList.toggle('selected');
   });
 }
@@ -478,26 +485,31 @@ function toggleSeasonHighlight() {
 function setSeasonButtonStates(seasons, selector) {
   const seasonButtons = document.querySelectorAll(selector);
   seasonButtons.forEach(button => {
-    // Remove the 'selected' class initially
     button.classList.remove('selected');
-    // If the button's value is in the seasons array, add the 'selected' class
     if (seasons.includes(parseInt(button.getAttribute('data-season')))) {
       button.classList.add('selected');
     }
-    // Ensure the event listener for toggling is properly attached
-    button.removeEventListener('click', toggleSeasonHighlight); // Prevent multiple bindings
+    button.removeEventListener('click', toggleSeasonHighlight);
     button.addEventListener('click', toggleSeasonHighlight);
   });
 }
 
-// users (collection)
-// │
-// └───userId (document)
-//     │
-//     └───recipes (sub-collection)
-//         │   recipe1 (document)
-//         │   recipe2 (document)
-//         │   ...
+function toggleDayHighlight() {
+  this.classList.toggle('selected');
+}
+
+function setDayButtonStates(days, selector) {
+  const dayButtons = document.querySelectorAll(selector);
+  dayButtons.forEach(button => {
+    button.classList.remove('selected');
+    const dayValue = parseInt(button.getAttribute('data-day'));
+    if (days.includes(dayValue)) { // Corrected to use `days` (the parameter)
+      button.classList.add('selected');
+    }
+    button.removeEventListener('click', toggleDayHighlight);
+    button.addEventListener('click', toggleDayHighlight);
+  });
+}
 
 // {
 //   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */

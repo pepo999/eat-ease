@@ -185,3 +185,13 @@ header {
     background-color: #4CAF50; /* Example selected color */
     color: white;
 }
+
+.day-btn.selected {
+    background-color: #4CAF50; /* Example selected color */
+    color: white;
+}
+
+.day-btn-detail.selected {
+    background-color: #4CAF50; /* Example selected color */
+    color: white;
+}

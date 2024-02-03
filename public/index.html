@@ -37,9 +37,10 @@
 
         </div>
         <div id="calendarNav" class="calendar-nav">
-            <button id="button-prev"> < </button>
-            <div class="month-span" id="selectedMonthDisplay"></div>
-            <button id="button-next"> > </button>
+            <button id="button-prev">
+                < </button>
+                    <div class="month-span" id="selectedMonthDisplay"></div>
+                    <button id="button-next"> > </button>
         </div>
         <div id="calendarContainer"></div>
         <div id="recipeContainer">
@@ -55,24 +56,28 @@
                     </div>
                     <div>
                         <label>Season:</label>
-                        <button type="button" class="season-btn-detail" data-season="1">1</button>
-                        <button type="button" class="season-btn-detail" data-season="2">2</button>
-                        <button type="button" class="season-btn-detail" data-season="3">3</button>
-                        <button type="button" class="season-btn-detail" data-season="4">4</button>
+                        <button type="button" class="season-btn-detail" data-season="2">Spring</button>
+                        <button type="button" class="season-btn-detail" data-season="3">Summer</button>
+                        <button type="button" class="season-btn-detail" data-season="4">Autumn</button>
+                        <button type="button" class="season-btn-detail" data-season="1">Winter</button>
+                    </div>
+                    <div>
+                        <label for="recipeDayDet">Day:</label>
+                        <!-- <input type="text" id="recipeDayDet" name="day"> -->
+                        <button type="button" class="day-btn-detail" data-day="1">Mon</button>
+                        <button type="button" class="day-btn-detail" data-day="2">Tue</button>
+                        <button type="button" class="day-btn-detail" data-day="3">Wed</button>
+                        <button type="button" class="day-btn-detail" data-day="4">Thu</button>
+                        <button type="button" class="day-btn-detail" data-day="5">Fri</button>
+                        <button type="button" class="day-btn-detail" data-day="6">Sat</button>
+                        <button type="button" class="day-btn-detail" data-day="7">Sun</button>
                     </div>
                     <div>
                         <label for="recipeIngredients">Ingredients:</label>
                         <div id="recipeIngredientsContainer"></div>
                         <button type="button" id="addRecipeIngredientBtn">Add Ingredient</button><br><br>
                         <button type="button" id="removeRecipeIngredientBtn">Remove Ingredient</button><br><br>
-                    </div>
-                    <div>
-                        <label for="recipeDescriptionDet">Description:</label>
-                        <input type="text" id="recipeDescriptionDet" name="description">
-                    </div>
-                    <div>
-                        <label for="recipeDayDet">Day:</label>
-                        <input type="text" id="recipeDayDet" name="day">
+                        Description: <textarea id="recipeDescriptionDet"></textarea><br>
                     </div>
                     <div class="btn-container">
                         <button type="submit">Update Recipe</button>
@@ -81,13 +86,15 @@
                             <button id="deleteRecipeBtn">Delete Recipe</button>
                         </div>
                     </div>
-
-
-                </form>
-
             </div>
+
+
+
+            </form>
+
         </div>
-    
+        </div>
+
     </main>
     <footer>
         <div class="footer-block">
@@ -106,6 +113,17 @@
                             <button type="button" class="season-btn" data-season="4">Autumn</button>
                             <button type="button" class="season-btn" data-season="1">Winter</button>
                         </div>
+                        <!-- Day: <input type="number" id="recipeDay" required><br> -->
+                        <div>
+                            <label for="recipeDay">Day:</label>
+                            <button type="button" class="day-btn" data-day="1">Mon</button>
+                            <button type="button" class="day-btn" data-day="2">Tue</button>
+                            <button type="button" class="day-btn" data-day="3">Wed</button>
+                            <button type="button" class="day-btn" data-day="4">Thu</button>
+                            <button type="button" class="day-btn" data-day="5">Fri</button>
+                            <button type="button" class="day-btn" data-day="6">Sat</button>
+                            <button type="button" class="day-btn" data-day="7">Sun</button>
+                        </div>
                         <div id="ingredientsContainer">
                             <h3>Ingredients</h3>
                             <div class="ingredientInput">
@@ -113,10 +131,12 @@
                                 Quantity: <input type="text" class="ingredientQuantity">
                             </div>
                         </div>
+                        <div>
+                            <label for="recipeDescription">Description:</label>
+                            <input type="text" id="recipeDescription" name="description">
+                        </div>
                         <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
                         <button type="button" id="removeIngredientBtn">Remove Ingredient</button><br><br>
-                        Day: <input type="number" id="recipeDay" required><br>
-                        Description: <textarea id="recipeDescription"></textarea><br>
                         <button type="submit">Add Recipe</button>
                     </form>
                 </div>
