@@ -1,50 +1,77 @@
 @media screen and (max-width: 992px) {
 
-    body, html{
-      /* heigh: 100%; */
-        height: 100%; 
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    body{
-      display: flex;
-      flex-direction: column;
-    }
-
-    *{
-        /* border: 2px solid violet; */
-        box-sizing: border-box;
-    }
-
-  header{
-    width: 100vw;
-    /* height: 10vh; */
-    flex-grow: 1;
-    display:flex;
-    flex-direction: row;
-    background-color: cadetblue;
+  body,
+  html {
+    /* heigh: 100%; */
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
   }
 
-  h1{
+  html {
+    background-image: url('./assets/cloud3.png');
+    opacity: 0.95;
+    /* background-size: 300px 100px; */
+    /* background: rgb(18,3,16);
+      background: linear-gradient(180deg, rgba(18,3,16,1) 17%, rgba(39,7,34,1) 61%, rgba(6,2,47,1) 100%); */
+    /* background-color: rgb(255, 0, 170); */
+    background-color: rgb(246, 176, 226)
+  }
+
+  ;
+
+  .shader {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    /* background: rgb(18,3,16);
+        background: linear-gradient(180deg, rgba(18,3,16,0.5) 17%, rgba(39,7,34,0.5) 61%, rgba(6,2,47,0.5) 100%); */
+    background-color: rgb(161, 129, 129);
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  * {
+    /* border: 2px solid violet; */
+    box-sizing: border-box;
+    /* color: #FAA916; */
+    color: #202020;
+    text-shadow: 0 0 2px #ffbb00, 0px 0px 4px #d4eaff, 0 0 6px #013f55;
+  }
+
+  header {
+    width: 100vw;
+    /* background-color: rgba(13, 5, 13, 0.6); */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+  }
+
+  h1 {
     display: inline;
   }
 
-  .head-block{
+  .head-block {
     display: inline;
     width: 33vw;
   }
 
-  .head-block-r{
+  .head-block-r {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     width: 33vw;
   }
-    
-  .calendar-nav{
+
+  .calendar-nav {
+    /* background-color: rgba(13, 5, 13, 0.6); */
     height: 3vh;
     display: flex;
     align-items: center;
@@ -52,26 +79,26 @@
     margin: 0px;
   }
 
-  .month-span{
+  .month-span {
     padding: 0px 10px 0px 10px;
     min-width: 30vw;
   }
 
-  .days{
+  .days {
     display: flex;
     flex-direction: row;
     width: 100vw;
     padding: 10px 10px 0px 10px;
     align-items: center;
-    }
+  }
 
-    .day{
-      flex-grow: 1;
-      text-align: center;
-      flex-basis: 0;
-    }
+  .day {
+    flex-grow: 1;
+    text-align: center;
+    flex-basis: 0;
+  }
 
-  .date{
+  .date {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -79,68 +106,79 @@
     height: 3vh;
   }
 
-  #mainContainer{
+  #mainContainer {
     padding: 0px;
     /* height: 80vh; */
     flex-grow: 10;
-    background-color: cadetblue;
+    /* background-color: #270722; */
     display: flex;
     flex-direction: column;
   }
 
-  .selectedDay{
+  .selectedDay {
     background-color: blueviolet;
   }
 
-  #recipeContainer{
+  #recipeContainer {
     /* height: 40vh; */
     flex-grow: 2;
     overflow-y: scroll;
   }
 
-  .btn-container{
+  .btn-container {
     display: flex;
     flex-direction: column;
   }
 
-  .btn-subcontainer{
+  .btn-subcontainer {
     display: flex;
     flex-direction: row;
   }
 
-  #recipeContainer{
-    background-color: cadetblue;
-    /* border-top: 1px violet solid; */
-    padding: 10px 0vw 10px 0vw;
+  #recipeContainer {
+    /* background-color: #270722; */
+    background: rgb(73,255,235);
+background: radial-gradient(circle, rgba(73,255,235,0.1) 0%, rgba(73,255,235,0) 68%);
+    padding: 30px 0vw 10px 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-y: scroll;
+    flex-basis: 0;
   }
 
-  footer{
-    background-color: cadetblue;
+  footer {
+    background-color: rgba(13, 5, 13, 0.6);
     /* height: 10vh; */
-    flex-grow: 0;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     width: 100vw;
   }
 
-  .footer-block{
+  .footer-block {
     height: 7vh;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: flex-end;
     width: 100vw;
   }
 
-  .footer-block-2{
-    height: 3vh;
+  /* .footer-block-2{
+    height: 0vh;
     width: 100vw;
-  }
+  } */
 
-  .sub-foot{
+  .sub-foot {
     width: 24vw;
+    height: 5vh;
   }
+
+  button {
+    background-color: black;
+    color: #FAA916;
+    border-radius: 10px;
   }
+
+}
