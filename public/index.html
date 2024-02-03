@@ -63,6 +63,8 @@
                     <div>
                         <label for="recipeIngredients">Ingredients:</label>
                         <div id="recipeIngredientsContainer"></div>
+                        <button type="button" id="addRecipeIngredientBtn">Add Ingredient</button><br><br>
+                        <button type="button" id="removeRecipeIngredientBtn">Remove Ingredient</button><br><br>
                     </div>
                     <div>
                         <label for="recipeDescriptionDet">Description:</label>
@@ -99,10 +101,10 @@
                         Name: <input type="text" id="recipeName" required><br>
                         <div>
                             <label>Season:</label>
-                            <button type="button" class="season-btn" data-season="1">1</button>
-                            <button type="button" class="season-btn" data-season="2">2</button>
-                            <button type="button" class="season-btn" data-season="3">3</button>
-                            <button type="button" class="season-btn" data-season="4">4</button>
+                            <button type="button" class="season-btn" data-season="2">Spring</button>
+                            <button type="button" class="season-btn" data-season="3">Summer</button>
+                            <button type="button" class="season-btn" data-season="4">Autumn</button>
+                            <button type="button" class="season-btn" data-season="1">Winter</button>
                         </div>
                         <div id="ingredientsContainer">
                             <h3>Ingredients</h3>
@@ -112,6 +114,7 @@
                             </div>
                         </div>
                         <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
+                        <button type="button" id="removeIngredientBtn">Remove Ingredient</button><br><br>
                         Day: <input type="number" id="recipeDay" required><br>
                         Description: <textarea id="recipeDescription"></textarea><br>
                         <button type="submit">Add Recipe</button>
