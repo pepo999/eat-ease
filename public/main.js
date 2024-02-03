@@ -77,17 +77,20 @@ let selectedSeason = null;
 
 async function displayRecipesForCurrentUser(userId) {
   const db = getFirestore();
-  selectedSeason = getCurrentSeason(currentMonth); // Not an array
-  const date = new Date(currentYear, currentMonth, new Date().getDate()); // Corrected to use getDate()
-  selectedDay = date.getDay() === 0 ? 7 : date.getDay(); // Singular value
+  selectedSeason = getCurrentSeason(currentMonth);
+  const date = new Date(currentYear, currentMonth, new Date().getDate());
+  selectedDay = date.getDay() === 0 ? 7 : date.getDay();
   const userRecipesRef = collection(db, 'users', userId, 'recipes');
   const q = query(userRecipesRef, where('season', 'array-contains', selectedSeason));
+  // const dayHTML = document.getElementById('selectedDay')
+  // dayHTML.innerHTML = selectedDay
+  // const monthHTML = document.getElementById('selectedMonth')
+  // monthHTML.innerHTML = currentMonth
   try {
     const querySnapshot = await getDocs(q);
     const recipes = [];
     querySnapshot.forEach((doc) => {
       const recipeData = doc.data();
-      // Ensure recipeData.day is an array and contains the selectedDay
       if (recipeData.day && recipeData.day.includes(selectedDay)) {
         recipeData.id = doc.id;
         recipes.push(recipeData);
@@ -170,11 +173,13 @@ function createCalendar() {
 
   const calendarContainer = document.getElementById('calendarContainer');
   const calendarNav = document.getElementById('calendarNav')
+  const daysHTML = document.querySelector('.days')
+  daysHTML.style.visibility = 'visible'
   calendarContainer.style.visibility = 'visible'
   calendarContainer.innerHTML = ''; 
   calendarContainer.style.height = '25vh'
   calendarNav.style.visibility = 'visible'
-  calendarNav.style.height = '5vh'
+  calendarNav.style.height = '3vh'
   createNavigationButtons(); // Create navigation buttons
 
   const blankCells = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
@@ -528,6 +533,9 @@ document.getElementById('allRecipesBtn').addEventListener('click', async functio
   const calendarNav = document.getElementById('calendarNav')
   calendarNav.style.visibility = 'hidden'
   calendarNav.style.height = '0vh'
+  const daysHTML = document.querySelector('.days')
+  daysHTML.style.visibility = 'hidden'
+
   try {
     const querySnapshot = await getDocs(userRecipesRef);
     const recipes = [];
@@ -540,6 +548,14 @@ document.getElementById('allRecipesBtn').addEventListener('click', async functio
     recipes.forEach(recipe => {
       const recipeElement = document.createElement('div');
       recipeElement.textContent = recipe.name;
+      recipeElement.classList.add('recipe-item'); // Optional: for styling
+      recipeElement.setAttribute('data-id', recipe.id); // Store recipe ID for easy access
+    
+      // Add click event listener to each recipe element
+      recipeElement.addEventListener('click', () => {
+        openRecipeDetailModal(recipe.id); // Assuming this function exists and opens the detail modal
+      });
+    
       recipeContainer.appendChild(recipeElement);
     });
   } catch (error) {

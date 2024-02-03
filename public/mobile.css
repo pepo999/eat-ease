@@ -45,7 +45,7 @@
   }
     
   .calendar-nav{
-    height: 5vh;
+    height: 3vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,6 +55,28 @@
   .month-span{
     padding: 0px 10px 0px 10px;
     min-width: 30vw;
+  }
+
+  .days{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding: 10px 10px 0px 10px;
+    align-items: center;
+    }
+
+    .day{
+      flex-grow: 1;
+      text-align: center;
+      flex-basis: 0;
+    }
+
+  .date{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 3vh;
   }
 
   #mainContainer{
@@ -89,10 +111,11 @@
   #recipeContainer{
     background-color: cadetblue;
     /* border-top: 1px violet solid; */
-    padding: 5vw 0vw 2vw 0vw;
+    padding: 10px 0vw 10px 0vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
   }
 
   footer{

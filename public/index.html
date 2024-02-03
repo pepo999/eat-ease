@@ -42,7 +42,22 @@
                     <div class="month-span" id="selectedMonthDisplay"></div>
                     <button id="button-next"> > </button>
         </div>
+        <div class="days">
+            <div class="day">MON</div>
+            <div class="day">TUE</div>
+            <div class="day">WED</div>
+            <div class="day">THU</div>
+            <div class="day">FRI</div>
+            <div class="day">SAT</div>
+            <div class="day">SUN</div>
+        </div>
         <div id="calendarContainer"></div>
+        <!-- <div class="date">
+            <div id="selectedDay"></div>
+            <div>/</div>
+            <div id="selectedMonth"></div>
+        </div> -->
+        
         <div id="recipeContainer">
         </div>
         <div id="recipeDetailModal" style="display:none;">
@@ -73,9 +88,10 @@
                     </div>
                     <div>
                         <label for="recipeIngredients">Ingredients:</label>
-                        <div id="recipeIngredientsContainer"></div>
+                        <div id="recipeIngredientsContainer">
                         <button type="button" id="addRecipeIngredientBtn">Add Ingredient</button><br><br>
                         <button type="button" id="removeRecipeIngredientBtn">Remove Ingredient</button><br><br>
+                        </div>
                         Description: <textarea id="recipeDescriptionDet"></textarea><br>
                     </div>
                     <div class="btn-container">
@@ -126,16 +142,17 @@
                         <div id="ingredientsContainer">
                             <h3>Ingredients</h3>
                             <div class="ingredientInput">
-                                Ingredient: <input type="text" class="ingredientName">
-                                Quantity: <input type="text" class="ingredientQuantity">
+                                Ingredient: <input type="text" class="ingredientName" placeholder="Insert ingredient name">
+                                Quantity: <input type="text" class="ingredientQuantity" placeholder="Insert quantity">
                             </div>
+                            <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
+                        <button type="button" id="removeIngredientBtn">Remove Ingredient</button><br><br>
                         </div>
                         <div>
                             <label for="recipeDescription">Description:</label>
                             <input type="text" id="recipeDescription" name="description">
                         </div>
-                        <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
-                        <button type="button" id="removeIngredientBtn">Remove Ingredient</button><br><br>
+                        
                         <button type="submit">Add Recipe</button>
                     </form>
                 </div>
