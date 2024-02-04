@@ -69,7 +69,7 @@
 
   header {
     width: 100vw;
-    background-color: rgba(135,246,255, 0.2);
+    background-color: rgba(135,246,255, 0.2);s
     /* flex-grow: 1; */
     display: flex;
     flex-direction: row;
@@ -78,9 +78,9 @@
   h1 {
     display: inline;
     /* font-family: 'Galada', cursive; */
-    font-weight:700;
+    font-weight:900;
     font-size: 2rem;  
-    text-shadow: #F2CD5D 0px 0px 40px, #F2CD5D 0px 0px 30px, #F2CD5D 0px 0px 20px, #F2CD5D 0px 0px 30px;
+    /* text-shadow: #F2CD5D 0px 0px 40px, #F2CD5D 0px 0px 30px, #F2CD5D 0px 0px 20px, #F2CD5D 0px 0px 30px; */
   }
 
   .head-block {
@@ -126,8 +126,8 @@
     min-width: 30vw;
     /* background-color: #202020; */
     text-shadow: none;
-    /* color: #F2CD5D; */
-    font-size: 1.3rem;
+    color: rgba(23, 22, 1, 0.506);
+    font-size: 1.15rem;
     height: 5vw;
     display: flex;
     justify-content: center;
