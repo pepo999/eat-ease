@@ -1,5 +1,7 @@
 @media screen and (max-width: 992px) {
 
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
   body,
   html {
     /* heigh: 100%; */
@@ -42,13 +44,14 @@
     /* border: 2px solid violet; */
     box-sizing: border-box;
     /* color: #FAA916; */
+    font-family: 'Dancing Script', cursive;
     color: #202020;
-    text-shadow: 0 0 2px #ffbb00, 0px 0px 4px #d4eaff, 0 0 6px #013f55;
+    text-shadow: 0 0 2px rgba(242,205,93, 0.5), 0px 0px 4px #fffbd4, 0 0 6px rgba(242,205,93, 0.5);
   }
 
   header {
     width: 100vw;
-    /* background-color: rgba(13, 5, 13, 0.6); */
+    background-color: rgba(135,246,255, 0.4);
     flex-grow: 1;
     display: flex;
     flex-direction: row;
@@ -59,8 +62,12 @@
   }
 
   .head-block {
-    display: inline;
+    /* display: inline; */
     width: 33vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 
   .head-block-r {
@@ -71,7 +78,7 @@
   }
 
   .calendar-nav {
-    /* background-color: rgba(13, 5, 13, 0.6); */
+    /* background-color: rgba(135,246,255, 0.8); */
     height: 3vh;
     display: flex;
     align-items: center;
@@ -79,23 +86,67 @@
     margin: 0px;
   }
 
+  .calendarDay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+  }
+
+  .calendarDay:not(.currentDay):not(.selectedDay):not(.empty){
+    /* background-color: #F2CD5D; */
+    background-color: rgba(242,205,93, 0.5);
+  }
+
   .month-span {
     padding: 0px 10px 0px 10px;
     min-width: 30vw;
+    background-color: #202020;
+    text-shadow: none;
+    color: #F2CD5D;
+    font-size: small;
+    height: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #button-prev{
+    border-radius: 5px 0px 0px 5px;
+    border-right: none;
+    width: 7vw;
+    height: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  #button-next{
+    border-radius: 0px 5px 5px 0px;
+    border-left: none;
+    width: 7vw;
+    height: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
   }
 
   .days {
+    /* background-color: rgba(135,246,255, 0.8); */
     display: flex;
     flex-direction: row;
     width: 100vw;
     padding: 10px 10px 0px 10px;
     align-items: center;
+    
   }
 
   .day {
     flex-grow: 1;
     text-align: center;
     flex-basis: 0;
+    color: rgba(23, 22, 1, 0.506);
+    text-shadow: none;
   }
 
   .date {
@@ -107,8 +158,10 @@
   }
 
   #mainContainer {
+    background: rgb(135,246,255);
+background: linear-gradient(180deg, rgba(135,246,255,0.4) 5%, rgba(135,246,255,0) 50%);
     padding: 0px;
-    /* height: 80vh; */
+    min-height: 80vh;
     flex-grow: 10;
     /* background-color: #270722; */
     display: flex;
@@ -117,12 +170,6 @@
 
   .selectedDay {
     background-color: blueviolet;
-  }
-
-  #recipeContainer {
-    /* height: 40vh; */
-    flex-grow: 2;
-    overflow-y: scroll;
   }
 
   .btn-container {
@@ -136,9 +183,9 @@
   }
 
   #recipeContainer {
-    /* background-color: #270722; */
-    background: rgb(73,255,235);
-background: radial-gradient(circle, rgba(73,255,235,0.1) 0%, rgba(73,255,235,0) 68%);
+    flex-grow: 2;
+    /* background: rgb(73,255,235);
+    background: radial-gradient(circle, rgba(73,255,235,0.1) 0%, rgba(73,255,235,0) 68%); */
     padding: 30px 0vw 10px 0vw;
     display: flex;
     flex-direction: column;
@@ -148,7 +195,7 @@ background: radial-gradient(circle, rgba(73,255,235,0.1) 0%, rgba(73,255,235,0) 
   }
 
   footer {
-    background-color: rgba(13, 5, 13, 0.6);
+    /* background-color: rgba(13, 5, 13, 0.6); */
     /* height: 10vh; */
     flex-grow: 1;
     display: flex;
@@ -177,7 +224,7 @@ background: radial-gradient(circle, rgba(73,255,235,0.1) 0%, rgba(73,255,235,0) 
 
   button {
     background-color: black;
-    color: #FAA916;
+    color: #F2CD5D;
     border-radius: 10px;
   }
 

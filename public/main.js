@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js';
 import { getFirestore, collection, getDocs, addDoc, query, where, doc, getDoc, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js';
 import { getDatabase, ref, set, push, child, onValue } from 'https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js';
 
 
@@ -19,6 +19,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const user = auth.currentUser
 
+
+
 function signInUser(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -33,11 +35,83 @@ function signInUser(email, password) {
     });
 }
 
-document.getElementById('signInForm').addEventListener('submit', function (event) {
-  event.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  signInUser(email, password);
+// document.getElementById('signInForm').addEventListener('submit', function (event) {
+//   event.preventDefault();
+//   const email = document.getElementById('email').value;
+//   const password = document.getElementById('password').value;
+//   signInUser(email, password);
+// });
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Your existing Firebase setup
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const signInForm = document.getElementById('signInForm');
+
+  // Sign Up User Function
+  function signUpUser(email, password) {
+      createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+              // Signed up
+              const user = userCredential.user;
+              console.log("User signed up:", user);
+              // Additional actions on successful sign up, like navigating to another page or showing user info
+              displayRecipesForCurrentUser(user.uid);
+          })
+          .catch((error) => {
+              console.error("Error signing up:", error);
+          });
+  }
+
+  // Modify existing form event listener for sign in to handle both sign in and sign up
+  signInForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const isSignUp = signInForm.getAttribute('data-mode') === 'signup'; // Check the mode of the form
+
+      if (isSignUp) {
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          if (password === confirmPassword) {
+              signUpUser(email, password); // Call sign up function if passwords match
+          } else {
+              console.error("Passwords do not match.");
+              // Handle error for mismatching passwords
+          }
+      } else {
+          signInUser(email, password); // Existing sign in function
+      }
+  });
+
+  // Switch between Sign In and Sign Up modes
+  const signInButton = document.querySelector('.signin-signup button:first-child');
+  const signUpButton = document.querySelector('.signin-signup button:last-child');
+  const modalTitle = document.querySelector('#signInModal p');
+
+  signInButton.addEventListener('click', function() {
+      modalTitle.innerText = 'Sign In';
+      signInButton.style.borderBottom = 'none'
+      signUpButton.style.borderBottom = 'solid 2px'
+      signInForm.setAttribute('data-mode', 'signin');
+      signInForm.innerHTML = `
+          Email: <input type="email" id="email">
+          Password: <input type="password" id="password">
+          <button type="submit">Login</button>
+      `;
+  });
+
+  signUpButton.addEventListener('click', function() {
+      modalTitle.innerText = 'Sign Up';
+      signInButton.style.borderBottom = 'solid 2px'
+      signUpButton.style.borderBottom = 'none'
+      signInForm.setAttribute('data-mode', 'signup');
+      signInForm.innerHTML = `
+          Email: <input type="email" id="email">
+          Password: <input type="password" id="password">
+          Confirm Password: <input type="password" id="confirmPassword">
+          <button type="submit">Register</button>
+      `;
+  });
 });
 
 onAuthStateChanged(auth, (user) => {
@@ -530,6 +604,7 @@ document.getElementById('allRecipesBtn').addEventListener('click', async functio
   calendarContainer.style.visibility = 'hidden'
   calendarContainer.style.height = '0vh'
   recipeContainer.innerHTML = '';
+  recipeContainer.style.flexGrow = '10';
   const calendarNav = document.getElementById('calendarNav')
   calendarNav.style.visibility = 'hidden'
   calendarNav.style.height = '0vh'
