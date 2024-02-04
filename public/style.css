@@ -104,9 +104,6 @@
     text-align: center;
 }
 
-.selectedDay {
-    background-color: #90ee90; /* Color for the selected day */
-}
 
 .currentDay {
     background-color: rgba(242,205,93, 1); /* Lighter color for the current day */

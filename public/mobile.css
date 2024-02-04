@@ -1,6 +1,13 @@
 @media screen and (max-width: 992px) {
 
-  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Rubik+Bubbles&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600');
+  @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
+  .lemon-regular {
+    font-family: "Lemon", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
   body,
   html {
@@ -44,14 +51,25 @@
     /* border: 2px solid violet; */
     box-sizing: border-box;
     /* color: #FAA916; */
-    font-family: 'Dancing Script', cursive;
+    
     color: #202020;
     text-shadow: 0 0 2px rgba(242,205,93, 0.5), 0px 0px 4px #fffbd4, 0 0 6px rgba(242,205,93, 0.5);
   }
 
+  button {
+    background-color: #202020;
+    border-right: #fefefe 2px solid;
+    border-bottom:#fefefe 2px solid;
+    border-top: none;
+    border-left: none;
+    color: #F2CD5D;
+    border-radius: 10px;
+    text-shadow: none;
+  }
+
   header {
     width: 100vw;
-    background-color: rgba(135,246,255, 0.4);
+    background-color: rgba(135,246,255, 0.2);
     /* flex-grow: 1; */
     display: flex;
     flex-direction: row;
@@ -59,7 +77,8 @@
 
   h1 {
     display: inline;
-    font-family: 'Rubik Bubbles', system-ui;
+    /* font-family: 'Galada', cursive; */
+    font-weight:700;
     font-size: 2rem;  
     text-shadow: #F2CD5D 0px 0px 40px, #F2CD5D 0px 0px 30px, #F2CD5D 0px 0px 20px, #F2CD5D 0px 0px 30px;
   }
@@ -81,8 +100,6 @@
   }
 
   .calendar-nav {
-    /* background-color: rgba(135,246,255, 0.8); */
-    /* height: 3vh; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,21 +111,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    /* border-radius: 5px; */
   }
 
   .calendarDay:not(.currentDay):not(.selectedDay):not(.empty){
     /* background-color: #F2CD5D; */
-    background-color: rgba(242,205,93, 0.5);
+    /* background-color: rgba(242,205,93, 0.5); */
+    background-color: rgba(239, 251, 255, 0.321);
+    border: #c2cbcd 1px solid;
   }
 
   .month-span {
     padding: 0px 10px 0px 10px;
     min-width: 30vw;
-    background-color: #202020;
+    /* background-color: #202020; */
     text-shadow: none;
-    color: #F2CD5D;
-    font-size: small;
+    /* color: #F2CD5D; */
+    font-size: 1.3rem;
     height: 5vw;
     display: flex;
     justify-content: center;
@@ -116,27 +135,24 @@
   }
 
   #button-prev{
-    border-radius: 5px 0px 0px 5px;
-    border-right: none;
-    /* width: 5vw;
-    height: 5vw; */
+    border-radius: 5px;
+    /* border-right: none; */
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    background-color: #202020;
   }
 
   #button-next{
-    border-radius: 0px 5px 5px 0px;
-    border-left: none;
-    /* width: 5vw;
-    height: 5vw; */
+    border-radius: 5px;
+    /* border-left: none; */
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    background-color: #202020;
   }
 
   .days {
-    /* background-color: rgba(135,246,255, 0.8); */
     display: flex;
     flex-direction: row;
     width: 100vw;
@@ -163,7 +179,7 @@
 
   #mainContainer {
     background: rgb(135,246,255);
-background: linear-gradient(180deg, rgba(135,246,255,0.4) 5%, rgba(135,246,255,0) 50%);
+    background: linear-gradient(180deg, rgba(135,246,255,0.2) 5%, rgba(135,246,255,0) 50%);
     padding: 0px;
     /* min-height: 60vh; */
     flex-grow: 10;
@@ -173,7 +189,8 @@ background: linear-gradient(180deg, rgba(135,246,255,0.4) 5%, rgba(135,246,255,0
   }
 
   .selectedDay {
-    background-color: rgba(135,246,255, 0.3);
+    background-color: rgba(255, 253, 135, 0.5);
+    border: rgba(192, 167, 67, 0.5) 1px solid;
   }
 
   .btn-container {
@@ -187,6 +204,7 @@ background: linear-gradient(180deg, rgba(135,246,255,0.4) 5%, rgba(135,246,255,0
   }
 
   #recipeContainer {
+    font-family: 'Dancing Script', cursive;
     flex-grow: 2;
     /* background: rgb(73,255,235);
     background: radial-gradient(circle, rgba(73,255,235,0.1) 0%, rgba(73,255,235,0) 68%); */
@@ -197,7 +215,7 @@ background: linear-gradient(180deg, rgba(135,246,255,0.4) 5%, rgba(135,246,255,0
     overflow-y: scroll;
     flex-basis: 0;
     flex-grow: 10;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
   }
 
   footer {
@@ -229,10 +247,6 @@ background: linear-gradient(180deg, rgba(135,246,255,0.4) 5%, rgba(135,246,255,0
     height: 5vh;
   }
 
-  button {
-    background-color: black;
-    color: #F2CD5D;
-    border-radius: 10px;
-  }
+  
 
 }

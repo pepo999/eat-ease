@@ -340,6 +340,18 @@ async function openRecipeDetailModal(recipeId) {
   }
 }
 
+function getSelectedSeasons(selector) {
+  const selectedSeasons = Array.from(document.querySelectorAll(`${selector}.selected`))
+    .map(button => parseInt(button.getAttribute('data-season')));
+  return selectedSeasons;
+}
+
+function getSelectedDays(selector) {
+  const selectedDays = Array.from(document.querySelectorAll(`${selector}.selected`))
+    .map(button => parseInt(button.getAttribute('data-day')));
+  return selectedDays;
+}
+
 document.getElementById('recipeDetailForm').addEventListener('submit', async function (event) {
   event.preventDefault();
   if (isNaN(selectedDay) || isNaN(selectedSeason)) {
@@ -461,17 +473,7 @@ document.getElementById('addRecipeForm').addEventListener('submit', function (ev
     };
   });
 
-  function getSelectedSeasons(selector) {
-    const selectedSeasons = Array.from(document.querySelectorAll(`${selector}.selected`))
-      .map(button => parseInt(button.getAttribute('data-season')));
-    return selectedSeasons;
-  }
-
-  function getSelectedDays(selector) {
-    const selectedDays = Array.from(document.querySelectorAll(`${selector}.selected`))
-      .map(button => parseInt(button.getAttribute('data-day')));
-    return selectedDays;
-  }
+  
 
 
   const recipe = {
