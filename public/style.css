@@ -109,8 +109,8 @@
 }
 
 .currentDay {
-    background-color: #ffd700; /* Lighter color for the current day */
-    opacity: 0.7; /* Semi-highlighted if it is also the selected day */
+    background-color: rgba(242,205,93, 1); /* Lighter color for the current day */
+    /* opacity: 0.7; Semi-highlighted if it is also the selected day */
 }
 
 #addRecipeModal {
