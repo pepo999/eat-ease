@@ -494,8 +494,8 @@ document.getElementById('addIngredientBtn').addEventListener('click', function (
   const newIngredientInput = document.createElement('div');
   newIngredientInput.classList.add('ingredientInput');
   newIngredientInput.innerHTML = `
-      Ingredient: <input type="text" class="ingredientName">
-      Quantity: <input type="text" class="ingredientQuantity">
+      <input type="text" class="ingredientName">
+      <input type="text" class="ingredientQuantity">
   `;
   container.appendChild(newIngredientInput);
 });
@@ -514,8 +514,8 @@ document.getElementById('addRecipeIngredientBtn').addEventListener('click', func
   const newIngredientInput = document.createElement('div');
   newIngredientInput.classList.add('ingredientRecipeInput');
   newIngredientInput.innerHTML = `
-      Ingredient: <input type="text" class="ingredientRecipeName">
-      Quantity: <input type="text" class="ingredientRecipeQuantity">
+      <input type="text" class="ingredientRecipeName">
+      <input type="text" class="ingredientRecipeQuantity">
   `;
   container.appendChild(newIngredientInput);
 });

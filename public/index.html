@@ -68,19 +68,19 @@
                 <span onclick="document.getElementById('recipeDetailModal').style.display='none'">&times;</span>
                 <h2>Recipe Details</h2>
                 <form id="recipeDetailForm">
-                    <div>
+                    <div class="name-container">
                         <label for="recipeNameDet">Name:</label>
                         <input type="text" id="recipeNameDet" name="name">
                     </div>
                         <label>Season:</label>
-                        <div>
-                        <button type="button" class="season-btn-detail" data-season="2">Spring</button>
-                        <button type="button" class="season-btn-detail" data-season="3">Summer</button>
-                        <button type="button" class="season-btn-detail" data-season="4">Autumn</button>
-                        <button type="button" class="season-btn-detail" data-season="1">Winter</button>
+                        <div class="day-container">
+                        <button type="button" class="season-btn-detail" data-season="2">Spr</button>
+                        <button type="button" class="season-btn-detail" data-season="3">Sum</button>
+                        <button type="button" class="season-btn-detail" data-season="4">Aut</button>
+                        <button type="button" class="season-btn-detail" data-season="1">Win</button>
                     </div>
                         <label for="recipeDayDet">Day:</label>
-                        <div>
+                        <div class="day-container">
                         <button type="button" class="day-btn-detail" data-day="1">Mon</button>
                         <button type="button" class="day-btn-detail" data-day="2">Tue</button>
                         <button type="button" class="day-btn-detail" data-day="3">Wed</button>
@@ -91,6 +91,7 @@
                     </div>
                     <div class="ingredients-section">
                         <label for="recipeIngredients">Ingredients:</label>
+                        <div class="input-titles"> <div>Ingredient</div> <div>Quantity</div></div>
                         <div id="recipeIngredientsContainer">
                         </div>
                         <div class="ingredient-btns">
@@ -128,16 +129,16 @@
                     <form id="addRecipeForm">
                         Name: <input type="text" id="recipeName" required><br>
                             <label>Season:</label>
-                            <div>
-                            <button type="button" class="season-btn" data-season="2">Spring</button>
-                            <button type="button" class="season-btn" data-season="3">Summer</button>
-                            <button type="button" class="season-btn" data-season="4">Autumn</button>
-                            <button type="button" class="season-btn" data-season="1">Winter</button>
+                            <div class="day-container">
+                            <button type="button" class="season-btn" data-season="2">Spr</button>
+                            <button type="button" class="season-btn" data-season="3">Sum</button>
+                            <button type="button" class="season-btn" data-season="4">Aut</button>
+                            <button type="button" class="season-btn" data-season="1">Win</button>
                         </div>
                         <!-- Day: <input type="number" id="recipeDay" required><br> -->
 
                         <label for="recipeDay">Day:</label>
-                        <div>
+                        <div class="day-container">
                             <button type="button" class="day-btn" data-day="1">Mon</button>
                             <button type="button" class="day-btn" data-day="2">Tue</button>
                             <button type="button" class="day-btn" data-day="3">Wed</button>
@@ -149,14 +150,16 @@
                         <div id="ingredientsContainer" class="ingredients-section">
                             <h3>Ingredients</h3>
                             <div class="ingredientInput">
-                                Ingredient: <input type="text" class="ingredientName"
+                                <div class="input-titles"> <div>Ingredient</div> <div>Quantity</div></div>
+                                <input type="text" class="ingredientName"
                                     placeholder="Insert ingredient name">
-                                Quantity: <input type="text" class="ingredientQuantity" placeholder="Insert quantity">
+                                <input type="text" class="ingredientQuantity" placeholder="Insert quantity">
                             </div>
-                            <div class="ingredient-btns">
-                                <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
-                                <button type="button" id="removeIngredientBtn">Remove Ingredient</button><br><br>
-                            </div>
+                            
+                        </div>
+                        <div class="ingredient-btns">
+                            <button type="button" id="addIngredientBtn">Add Ingredient</button><br><br>
+                            <button type="button" id="removeIngredientBtn">Remove Ingredient</button><br><br>
                         </div>
                         <div class="description">
                             <label for="recipeDescription">Description:</label>

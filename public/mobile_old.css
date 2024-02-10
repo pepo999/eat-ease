@@ -20,13 +20,13 @@
   }
 
   html {
-    background-image: url('assets/cloud3.png');
+    background-image: url('./assets/cloud3.png');
     opacity: 0.95;
     /* background-size: 300px 100px; */
     /* background: rgb(18,3,16);
       background: linear-gradient(180deg, rgba(18,3,16,1) 17%, rgba(39,7,34,1) 61%, rgba(6,2,47,1) 100%); */
     /* background-color: rgb(255, 0, 170); */
-    background-color: rgb(246, 176, 226);
+    background-color: rgb(246, 176, 226)
   }
 
   ;
@@ -58,16 +58,13 @@
 
   button {
     background-color: #202020;
-    /* border-right: #fefefe 2px solid;
+    border-right: #fefefe 2px solid;
     border-bottom:#fefefe 2px solid;
     border-top: none;
-    border-left: none; */
-    border: none;
+    border-left: none;
     color: #F2CD5D;
-    border-radius: 5px;
+    border-radius: 10px;
     text-shadow: none;
-    height: 4vh;
-    margin: 5px;
   }
 
   header {
@@ -191,36 +188,6 @@
     flex-direction: column;
   }
 
-  label{
-    margin: 20px 0px 5px 0px;
-  }
-
-  .day-container{
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-  }
-
-  .day-container > button{
-    height: 2.5vh;
-    margin: 2.5px;
-    width: 40px;
-  }
-
-  .season-btn, .day-btn{
-    border-radius: 5px;
-    border: none;
-    width: 23%;
-    text-align: center;
-    height: 2.5vh;
-  }
-
-  .season-btn{
-    width: 23%;
-    text-align: center;
-    height: 2.5vh;
-  }
-
   .selectedDay {
     background-color: rgba(255, 253, 135, 0.5);
     border: rgba(192, 167, 67, 0.5) 1px solid;
@@ -228,12 +195,12 @@
 
   .btn-container {
     display: flex;
-    flex-direction: row;
-    padding: 10px 0px 20px 0px;
+    flex-direction: column;
   }
 
-  .btn-container > button{
-    width: 20vw;
+  .btn-subcontainer {
+    display: flex;
+    flex-direction: row;
   }
 
   #recipeContainer {
@@ -252,6 +219,9 @@
   }
 
   footer {
+    /* background-color: rgba(13, 5, 13, 0.6); */
+    /* height: 10vh; */
+    /* flex-grow: 1; */
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -267,85 +237,16 @@
     width: 100vw;
   }
 
+  /* .footer-block-2{
+    height: 0vh;
+    width: 100vw;
+  } */
+
   .sub-foot {
     width: 24vw;
     height: 5vh;
   }
 
-  .modal{
-    margin: 5%;
-    border-radius: 5px;
-  }
   
-  .modal > span{
-    padding: 10px;
-    font-size: 70px;
-  }
-
-  h2{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 20px 0px 10px 0px;
-  }
-
-  .ingredient-btns{
-    display: flex;
-    flex-direction: row;
-
-  }
-
-  .ingredient-btns > button{
-    width: 50%;
-    height: 3.5vh;
-    font-size: 12.5px;
-  }
-
-  .ingredients-section{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #recipeDetailForm, #addRecipeForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .description{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    margin: 20px 0px 5px 0px;
-  }
-
-  #recipeDescription, #recipeDescriptionDet {
-    width: 100%;
-    height: 10vh !important;
-    overflow-y: scroll;
-    background-color: #ffd6fd;
-    border: solid 2 px violet;
-    text-align: start;
-  }
-
-  #button-next, #button-prev{
-    height: 2.5vh;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .input-titles{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .input-titles > div{
-    width: 50%;
-    text-align: center;
-  }
 
 }
