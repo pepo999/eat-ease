@@ -234,6 +234,7 @@
 
   .btn-container > button{
     width: 20vw;
+    font-size: 12.5px;
   }
 
   #recipeContainer {
@@ -322,7 +323,7 @@
   }
 
   #recipeDescription, #recipeDescriptionDet {
-    width: 100%;
+    width: 90% !important;
     height: 10vh !important;
     overflow-y: scroll;
     background-color: #ffd6fd;
@@ -348,4 +349,12 @@
     text-align: center;
   }
 
+  .sign-btn{
+    margin: 0px;
+  }
+
+  .add-recipe-btn{
+    margin: 20px;
+    margin-bottom: 30px;
+  }
 }

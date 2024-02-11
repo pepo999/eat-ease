@@ -24,8 +24,8 @@
     <main id="mainContainer">
         <div id="signInModal" style="display:none;">
             <section class="signin-signup">
-                <button>Sign In</button>
-                <button style="border-bottom: solid 2px;">Sign Up</button>
+                <button class="sign-btn">Sign In</button>
+                <button class="sign-btn" style="border-bottom: solid 2px;">Sign Up</button>
             </section>
             <div>
                 <span onclick="document.getElementById('signInModal').style.display='none'">&times;</span>
@@ -68,10 +68,10 @@
                 <span onclick="document.getElementById('recipeDetailModal').style.display='none'">&times;</span>
                 <h2>Recipe Details</h2>
                 <form id="recipeDetailForm">
-                    <div class="name-container">
+                    <!-- <div class="name-container"> -->
                         <label for="recipeNameDet">Name:</label>
                         <input type="text" id="recipeNameDet" name="name">
-                    </div>
+                    <!-- </div> -->
                         <label>Season:</label>
                         <div class="day-container">
                         <button type="button" class="season-btn-detail" data-season="2">Spr</button>
@@ -166,7 +166,7 @@
                             <input type="text" id="recipeDescription" name="description">
                         </div>
 
-                        <button type="submit">Add Recipe</button>
+                        <button class="add-recipe-btn" type="submit">Add Recipe</button>
                     </form>
                 </div>
             </div>
