@@ -384,4 +384,9 @@
     margin: 20px;
     margin-bottom: 30px;
   }
+
+  #signin-message{
+    text-align: center;
+    color: red;
+  }
 }

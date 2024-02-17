@@ -15,7 +15,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-// const db = getFirestore(app);
 const auth = getAuth(app);
 const user = auth.currentUser
 
@@ -24,66 +23,58 @@ const user = auth.currentUser
 function signInUser(email, password) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-      // Signed in 
       const user = userCredential.user;
-      console.log("User signed in:", user);
-      // Additional actions on successful sign in
       displayRecipesForCurrentUser(user.uid);
     })
     .catch((error) => {
-      console.error("Error signing in:", error);
+      // console.error("Error signing in:", error);
+      const signMsg = document.getElementById('signin-message')
+      signMsg.innerHTML = ''
+      signMsg.textContent = 'No account found with that username or password. Try again';
     });
 }
 
-// document.getElementById('signInForm').addEventListener('submit', function (event) {
-//   event.preventDefault();
-//   const email = document.getElementById('email').value;
-//   const password = document.getElementById('password').value;
-//   signInUser(email, password);
-// });
-
 document.addEventListener('DOMContentLoaded', function() {
-  // Your existing Firebase setup
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const signInForm = document.getElementById('signInForm');
+  const signMsg = document.getElementById('signin-message')
+  signMsg.innerHTML = ''
 
-  // Sign Up User Function
   function signUpUser(email, password) {
       createUserWithEmailAndPassword(auth, email, password)
           .then((userCredential) => {
-              // Signed up
               const user = userCredential.user;
-              console.log("User signed up:", user);
-              // Additional actions on successful sign up, like navigating to another page or showing user info
               displayRecipesForCurrentUser(user.uid);
           })
           .catch((error) => {
-              console.error("Error signing up:", error);
+              // console.error("Error signing up:", error);
+              const signMsg = document.getElementById('signin-message')
+              signMsg.innerHTML = ''
+              signMsg.textContent = 'Something went wrong'             
           });
   }
 
-  // Modify existing form event listener for sign in to handle both sign in and sign up
   signInForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-      const isSignUp = signInForm.getAttribute('data-mode') === 'signup'; // Check the mode of the form
+      const isSignUp = signInForm.getAttribute('data-mode') === 'signup';
 
       if (isSignUp) {
           const confirmPassword = document.getElementById('confirmPassword').value;
           if (password === confirmPassword) {
-              signUpUser(email, password); // Call sign up function if passwords match
+              signUpUser(email, password);
           } else {
-              console.error("Passwords do not match.");
-              // Handle error for mismatching passwords
+              // console.error("Passwords do not match.");
+              const signMsg = document.getElementById('signin-message')
+              signMsg.textContent = 'Passwords do not match'
           }
       } else {
-          signInUser(email, password); // Existing sign in function
+          signInUser(email, password); 
       }
   });
 
-  // Switch between Sign In and Sign Up modes
   const signInButton = document.querySelector('.signin-signup button:first-child');
   const signUpButton = document.querySelector('.signin-signup button:last-child');
   const modalTitle = document.querySelector('#signInModal p');
@@ -98,6 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
           Password: <input type="password" id="password">
           <button type="submit">Login</button>
       `;
+      const signMsg = document.getElementById('signin-message')
+      signMsg.innerHTML = ''
   });
 
   signUpButton.addEventListener('click', function() {
@@ -111,7 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
           Confirm Password: <input type="password" id="confirmPassword">
           <button type="submit">Register</button>
       `;
+      const signMsg = document.getElementById('signin-message')
+      signMsg.innerHTML = ''
   });
+  
 });
 
 onAuthStateChanged(auth, (user) => {
@@ -302,7 +298,7 @@ async function openRecipeDetailModal(recipeId) {
   currentRecipeId = recipeId;
   const userId = auth.currentUser.uid;
   if (!userId || !recipeId) {
-    console.error("User ID or Recipe ID is undefined.");
+    // console.error("User ID or Recipe ID is undefined.");
     return;
   }
   const db = getFirestore();
